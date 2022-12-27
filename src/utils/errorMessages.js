@@ -6,7 +6,10 @@ module.exports = {
         },
         
     //* PRODUCTS 
-    
+        getProductByIdErr : {
+            statusCode : 400,
+            message : "CANNOT_GET_PRODUCT"
+        },
     
     //* USERS
         missingAuthCode : {
@@ -29,7 +32,7 @@ module.exports = {
             message : "FAILED_TO_ADD_USER_KAKAO"
         }
 
-
+        
     //* ORDERS
 
 }
