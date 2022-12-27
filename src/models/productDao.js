@@ -50,7 +50,7 @@ const getAllProducts = async (categoryId, size, orderBy) => {
         let returnData = [];
 
         for (let i=0; i<getProductId.length; i++) {
-            const getPrices = await dataSource.query(`
+            const [getPrices] = await dataSource.query(`
                 SELECT b.price FROM bids AS b
                 LEFT JOIN options AS op ON b.option_id = op.id
                 LEFT JOIN products AS p ON op.product_id = p.id
@@ -63,11 +63,10 @@ const getAllProducts = async (categoryId, size, orderBy) => {
                 ORDER BY b.price ASC;
             `, [getProductId[i].id]
             )
-            
-            if (typeof getPrices[0] == 'undefined') {
+            if (!getPrices) {
                 returnData.push({id : getProductId[i].id, price : ''})
             } else {
-                returnData.push({id : getProductId[i].id, price : getPrices[0].price})
+                returnData.push({id : getProductId[i].id, price : getPrices.price})
             }
         }
 
