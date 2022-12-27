@@ -17,6 +17,11 @@ const getProductById = async (productId) => {
     }
 }
 
+const getAllProducts = async (categoryId, size, orderBy) => {
+    return await productDao.getAllProducts(categoryId, size, orderBy)
+}
+
 module.exports = {
-    getProductById
+    getProductById,
+    getAllProducts
 }
