@@ -27,5 +27,16 @@ describe("GET Products", () => {
             .expect(200);
     });
 
+    test("SUCCESS: getAllProducts", async () => {
+        await request(app)
+            .get("/products")
+            .expect(200);
+    });
+
+    test("SUCCESS: filters", async () => {
+        await request(app)
+            .get("/products?size=230&categoryId=1&sortBy=releaseDate")
+            .expect(200);
+    });
 })
 
