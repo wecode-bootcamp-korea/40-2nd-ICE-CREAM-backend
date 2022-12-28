@@ -1,5 +1,18 @@
 const dataSource = require('./data-source')
 
+const getUserByKakaoId = async (id) => {
+	const result = await dataSource.query(`
+		SELECT 
+			id,
+            nickname,
+            email
+		FROM users
+		WHERE social_id = ?
+        `, [id]
+	)
+	return result[0]
+}
+
 const checkRegisteredAlready = async (kakaoId) => {
     try{
         const [res] = await dataSource.query(`
@@ -37,6 +50,7 @@ const createUser = async (kakaoId, email, profileImage, nickname) => {
 }
 
 module.exports = {
+    getUserByKakaoId,
     checkRegisteredAlready,
     createUser
 }
