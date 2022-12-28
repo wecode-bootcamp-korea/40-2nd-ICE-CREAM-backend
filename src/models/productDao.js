@@ -100,7 +100,7 @@ const getAllProducts = async (categoryId, size, orderBy) => {
 }
 
 const getConstantProductDataById = async (productId) => {
-
+    
     let [x] =  await dataSource.query(`
         SELECT
             b.price
@@ -150,7 +150,7 @@ const getConstantProductDataById = async (productId) => {
     )
 
     let imgArr = [];
-
+    
     for (let i=0; i<z.imageUrl.length; i++) {
         imgArr.push({
             alt : 'alt',
