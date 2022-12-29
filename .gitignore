@@ -1,4 +1,5 @@
 .env
+.env.test
 schema.sql
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,macos,node,linux,visualstudiocode,dotenv
