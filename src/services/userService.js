@@ -17,8 +17,6 @@ const kakaoLogin = async (authCode) => {
             withCredentials: true
         })
 
-        console.log(getToken)
-
         const getUserData = await axios.get('https://kapi.kakao.com/v2/user/me', {
             headers: {
                 'Authorization': `Bearer ${getToken.data.access_token}`
