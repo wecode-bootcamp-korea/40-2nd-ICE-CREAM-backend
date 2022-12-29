@@ -2,8 +2,6 @@ const userDao = require('../models/userDao')
 const jwt = require('jsonwebtoken')
 const axios = require('axios');
 
-// https://kauth.kakao.com/oauth/authorize?client_id=12c9640ef50cfaf659de720df097c089&redirect_uri=http://localhost:3000/kakaoLogin&response_type=code
-
 const kakaoLogin = async (authCode) => {
     try { 
         const getToken = await axios.get('https://kauth.kakao.com/oauth/token', {
