@@ -1,44 +1,42 @@
 const dataSource = require('./data-source')
 
-const getUserByKakaoId = async (kakaoId) => {
+const checkRegisteredAlready = async (kakaoId) => {
     try{
-        const result = await dataSource.query(`
-            SELECT 
-                kakao_id
-            FROM
-                users
-            WHERE
-                kakao_id = ${kakaoId}
-            `)
+        const [res] = await dataSource.query(`
+            SELECT EXISTS(
+                SELECT id FROM users
+                WHERE social_id = ?
+            ) AS registered
+            `, [kakaoId]
+        )
 
-        return result.length
+        return !!parseInt(res.registered)
     } catch {
-        throw new Error('getUserByKakaoIdErr')
+        throw new Error('checkRegisteredAlreadyErr')
     }
 }
 
-const insertKakaoId = async (kakaoId, email, profileImage, nickname) => {
+const createUser = async (kakaoId, email, profileImage, nickname) => {
     try {
-        const result = await dataSource.query(`
-            INSERT INTO users (
-                kakao_id,
+        await dataSource.query(`
+            INSERT INTO users(
+                social_id,
                 email,
-                profile_image,
+                profile_image_url,
                 nickname
             ) VALUES (
                 ?,
                 ?,
                 ?,
                 ?
-            )`,
-            [kakaoId, email, profileImage, nickname]
+            )`, [kakaoId, email, profileImage, nickname]
         )
     } catch {
-        throw new Error('insertKakaoIdErr')
+        throw new Error('createUserErr')
     }
 }
 
 module.exports = {
-    getUserByKakaoId,
-    insertKakaoId
+    checkRegisteredAlready,
+    createUser
 }

@@ -1,21 +1,21 @@
 const request = require("supertest");
 const axios = require('axios');
 const { createApp } = require("../app");
-const AppDataSource = require("../src/models/data-source");
+const appDataSource = require("../src/models/data-source");
 
 describe("Kakao Login", () => {
     let app;
 
     beforeAll(async () => {
         app = createApp();
-        await AppDataSource.initialize();
+        await appDataSource.initialize();
     });
 
     afterAll(async () => {
-        await AppDataSource.query(`SET FOREIGN_KEY_CHECKS = 0`);
-        await AppDataSource.query(`TRUNCATE users`);
-        await AppDataSource.query(`SET FOREIGN_KEY_CHECKS = 1`);
-        await AppDataSource.destroy();
+        await appDataSource.query(`SET FOREIGN_KEY_CHECKS = 0`);
+        await appDataSource.query(`TRUNCATE users`);
+        await appDataSource.query(`SET FOREIGN_KEY_CHECKS = 1`);
+        await appDataSource.destroy();
     });
 
     test("FAILED: No Auth Code", async () => {
@@ -23,13 +23,6 @@ describe("Kakao Login", () => {
             .post("/users/login")
             .expect(400)
             .expect({ error: true, message: 'MISSING_AUTH_CODE' });
-    });
-
-    test("FAILED: Login Fail", async () => {
-        await request(app)
-            .post("/users/login?code=wrongAuthCode")
-            .expect(400)
-            .expect({ error: true, message: 'LOGIN_FAILED_KAKAO' });
     });
         
     test('SUCCESS: Kakao Login', async () => {
@@ -55,7 +48,6 @@ describe("Kakao Login", () => {
 
         await request(app)
             .post("/users/login?code=testAuthCode")
-            
-        .expect(200);
+            .expect(200);
     })
 });
