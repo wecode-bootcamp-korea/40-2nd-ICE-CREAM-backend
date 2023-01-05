@@ -4,8 +4,8 @@ const getPostByFilter = async (filterBy) => {
   return await postDao.getPostByFilter(filterBy)
 }
 
-const getPostDetail = async(postId) => {
-  return await postDao.getPostDetail(postId)
+const getPostDetail = async(userId, postId) => {
+  return await postDao.getPostDetail(userId, postId) 
 }
 
 module.exports = { 

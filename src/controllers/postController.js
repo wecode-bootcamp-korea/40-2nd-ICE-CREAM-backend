@@ -8,8 +8,13 @@ const getPostByFilter = catchAsync(async (req, res) => {
     res.status(200).json({ posts });
 });
 
-const 
+const getPostDetail = catchAsync(async (req, res) => {
+  const {userId, postId} = req.body;
+  const result = await postService.getPostDetail(userId, postId)
+  res.status(200).json({ data : result });
+});
 
 module.exports = { 
-  getPostByFilter
+  getPostByFilter,
+  getPostDetail
 };
