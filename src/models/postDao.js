@@ -17,7 +17,7 @@ const getPostByFilter = async (filterBy) => {
       u.nickname
     FROM posts p
     JOIN users u ON p.user_id = u.id
-    ${styleFilterSet.filterBy}
+    ${styleFilterSet[filterBy]}
     `,
     )};
 
