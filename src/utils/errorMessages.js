@@ -6,10 +6,13 @@ module.exports = {
         },
         
     //* PRODUCTS 
-    
+        getProductByIdErr : {
+            statusCode : 400,
+            message : "CANNOT_GET_PRODUCT"
+        },
     
     //* USERS
-        authCodeErr : {
+        missingAuthCode : {
             statusCode : 400,
             message : "MISSING_AUTH_CODE"
         },
@@ -19,17 +22,17 @@ module.exports = {
             message : "LOGIN_FAILED_KAKAO"
         },
 
-        getUserByKakaoIdErr : {
+        checkRegisteredAlreadyErr : {
             statusCode : 400,
             message : "CANNOT_FIND_USER_KAKAO_ID"
         },
 
-        insertKakaoIdErr : {
+        createUserErr : {
             statusCode : 400,
             message : "FAILED_TO_ADD_USER_KAKAO"
         }
 
-
+        
     //* ORDERS
 
 }
