@@ -1,12 +1,10 @@
-const appDataSource = require('./data-source');
-
+onst appDataSource = require(‘./data-source’);
 const getPostByFilter = async (filterBy) => {
-
-  let orderby = ''
-  if (filterBy = 'trending') {
-    orderby = 'order by p.likes DESC'
-  } else if (filterBy = 'newest') {
-    orderby = 'order by p.created_at DESC'
+  let orderby = ‘’
+  if (filterBy = ‘trending’) {
+    orderby = ‘order by p.likes DESC’
+  } else if (filterBy = ‘newest’) {
+    orderby = ‘order by p.created_at DESC’
   }
   return await appDataSource.query(
       `
@@ -22,7 +20,6 @@ const getPostByFilter = async (filterBy) => {
       ${orderby}
       `,
     )};
-
 const getPostDetail = async (postId) => {
   return await appDataSource.query(
       `
@@ -40,7 +37,6 @@ const getPostDetail = async (postId) => {
       ${postId}
       `,
       )};
-
   module.exports = {
     getPostByFilter,
     getPostDetail

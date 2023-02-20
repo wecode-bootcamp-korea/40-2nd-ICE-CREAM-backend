@@ -7,6 +7,7 @@ const getPostByFilter = catchAsync(async (req, res) => {
       if (!filterBy) throw new Error('keyErr')
 
     const posts = await postService.getPostByFilter(filterBy);
+
     res.status(200).json({ posts });
 })
 
@@ -19,4 +20,5 @@ const getPostDetail = catchAsync(async (req, res) => {
 module.exports = { 
   getPostByFilter,
   getPostDetail
+
 };
