@@ -1,9 +1,11 @@
-const postDao = require('../models/postDao')
-
+const postDao = require(‘../models/postDao’)
 const getPostByFilter = async (filterBy) => {
-  return postDao.getPostByFilter(filterBy)
+  return await postDao.getPostByFilter(filterBy)
 }
-
-module.exports = { 
-  getPostByFilter
+const getPostDetail = async(postId) => {
+  return await postDao.getPostDetail(postId)
+}
+module.exports = {
+  getPostByFilter,
+  getPostDetail
  };
